@@ -4,14 +4,33 @@ https://(your_app_name).mybluemix.net/freeboard/ui - main UI page<br>
 https://(your_app_name).mybluemix.net/freeboard/winkboard - sample freeboard 1<br>
 https://(your_app_name).mybluemix.net/freeboard/winkboardautogroup - sample freeboard <br>
 
+UI 2.0
+https://(your_app_name).mybluemix.net/wnrUI <br>
 == UPDATE ==
 -
+06/24/2016
+------------
+#####Milestone for WNR UI 2.0
+controls are functional both directions. (no garage doors, robots and groups for this release)<br>
+Flow Editor:<br>
+*  Import updated [winkCore.json](winkCore.json)
+*  Import updated [winkIntegration.json](winkIntegration.json)
+*  Import updated [tabletUI.json](tabletUI.json)
+*  do not forget to check [duplicate websockets](../../README-WebsocketFix.md)
+*  perform "FULL" deployment<br>
+
+Bluemix git console:<br>
+*  re-deploy application in git<br>
+<img src="images/deploy.png">
+
+
 06/23/2016
 ------------
 Node-Red core 0.14.3 has been released.
 There are some changes in flow UI/ some new nodes, etc.
 In order to move to this new version - update your  [package.json](package.json) and re-deploy app in BlueMix git.<br>
 for local installations - you just need to follow instructions from http://nodered.org/docs/getting-started/upgrading.html
+This update will also bring you new UI 2.0 version. Still early preview and not fully functional.
 
 06/21/2016
 ------------
