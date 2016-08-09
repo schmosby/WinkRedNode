@@ -8,6 +8,95 @@ UI 2.0
 https://(your_app_name).mybluemix.net/wnrUI <br>
 == UPDATE ==
 -
+08/01/2016
+------------
+#####Added LeakSmart valves data to summary page (wnr UI 2.0 and 1.0)
+![valve summary](images/valve1.png)
+
+Flow Editor:<br>
+*  Import updated [winkCore.json](winkCore.json)
+*  Import updated [winkIntegration.json](winkIntegration.json)
+*  Import updated [tabletUI.json](tabletUI.json)
+*  do not forget to check [duplicate websockets](../../README-WebsocketFix.md)
+*  perform "FULL" deployment<br>
+
+Bluemix git console:<br>
+*  re-deploy application in git<br>
+<img src="images/deploy.png">
+
+
+07/31/2016
+-----------
+URL for wink API index has been changed after it was not accessible for some time last week
+I updated winkIntegration flow so it should work again.
+
+Flow Editor:<br>
+*  Import updated [winkIntegration.json](winkIntegration.json)
+*  perform "FULL" deployment<br>
+
+07/30/2016
+------------
+####winkCore - added valve commands.
+* use context.global.executeWinkCMD(winkname,type,cmd,level) function with following paramteres:
+	* winkname - LeakSmart Valve Name (user proper case as in wink app)
+	* type - 'valve'
+	* cmd:
+		* 'open' - this will open valve
+		* 'close' - this will close valve<br>
+
+####winkCore - added advanced lock commands.
+* use context.global.executeWinkCMD(winkname,type,cmd,param) function with following paramteres:
+	* winkname - Wink Lock Name (user proper case as in wink app)
+	* type - 'lock'
+	* cmd:
+		* 'vacation_mode' - this will enable/disable vacation mode
+			* param = "true" or "false"
+		* 'beeper' - this will enable/disable beeper
+			* param = "true" or "false"
+		* 'auto_lock' - this will enable/disable auto lock
+			* param = "true" or "false"
+		* 'alarm' - this will activate lock alarm mode
+			* param = "null", "activity", "tamper", "forced_entry"
+
+Flow Editor:<br>
+*  Import updated [winkCore.json](winkCore.json)
+*  do not forget to check [duplicate websockets](../../README-WebsocketFix.md)		
+*  perform "FULL" deployment<br>
+
+-
+07/21/2016
+-----------
+It seems I missed documentation on how to use fadein/out/pulse effect commands inside node-red robots/schedules
+
+fade in/fade out:
+mycmd= context.global.executeEffectCMD(effect,winkName,winkType,min,max,period);
+
+parameters :
+
+	'effect': 'fadein','fadeout'
+	'winkName': dimmable light name or group name
+	'winkType': 'light' or 'group'
+	'min': min brightness (0-100)
+	'max': max brightness (0-100)
+	'period' : effect period in seconds
+	
+pulse:
+mycmd= context.global.executeEffectCMD(effect,winkName,winkType,min,max,period,repeat,delay);
+
+parameters :
+
+	'effect': 'pulse'
+	'winkName': dimmable light name or group name
+	'winkType': 'light' or 'group'
+	'min': min brightness (0-100)
+	'max': max brightness (0-100)
+	'period' : put null or 0
+	'repeat' : 'number of "pulses"
+	'delay' : delay between "pulse" in seconds
+
+then as usual type
+	node.send(mycmd);
+
 07/12/2016
 -----------
 Wink changed it's api server name and I probably missed it but today old server stopped working due to expired certificate
@@ -87,7 +176,7 @@ Flow Editor:
 
 06/04/2016
 ------------
-#####winkCore - added siren commands.
+####winkCore - added siren commands.
 * use context.global.executeWinkCMD(winkname,type,cmd,level) function with following paramteres:
 	* winkname - siren name (user proper case as in wink app)
 	* type - 'siren'
